@@ -1,0 +1,34 @@
+{
+  "_comment": "Machine-readable mirror of the mode budgets in .claude/agents/financial-orchestrator.md section 3. Caps, not targets. Keep both in sync (tests/validate_config.py checks the keys).",
+  "default_mode": "standard",
+  "modes": {
+    "quick": {
+      "max_specialists": 2,
+      "review_chain": ["chief-financial-authority"],
+      "review_note": "Chief performs a consolidated Head+Chief review",
+      "max_total_web_searches": 3,
+      "research_passes": 1,
+      "max_revision_cycles": 1,
+      "specialist_model_override": "haiku (simple calculation tasks only)"
+    },
+    "standard": {
+      "max_specialists": "relevant only",
+      "review_chain": ["head-financial-intelligence", "chief-financial-authority"],
+      "max_total_web_searches": 20,
+      "research_passes": 2,
+      "max_revision_cycles": 2,
+      "specialist_model_override": null
+    },
+    "deep": {
+      "requires_explicit_user_opt_in": true,
+      "max_specialists": "relevant research + analysis specialists",
+      "review_chain": ["forecast-supervisor (if forecasting)", "risk-compliance-analyst", "head-financial-intelligence", "chief-financial-authority"],
+      "max_total_web_searches": 60,
+      "research_passes": 3,
+      "max_revision_cycles": 2,
+      "specialist_model_override": null
+    }
+  },
+  "per_agent_search_caps": {"quick": 3, "standard": 8, "deep": 20},
+  "session_ttl_minutes": 240
+}

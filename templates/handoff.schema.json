@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/aliakbarbhojani/financial-intelligence-agents/templates/handoff.schema.json",
+  "title": "Financial Intelligence agent handoff",
+  "description": "Optional JSON form of the standard Markdown HANDOFF block (finance-standards section 7).",
+  "type": "object",
+  "required": ["agent", "task", "mode", "objective", "status", "created", "findings", "sources",
+               "assumptions", "contradictory_evidence", "risks_limitations", "outstanding_questions",
+               "recommended_next_action"],
+  "additionalProperties": false,
+  "properties": {
+    "agent": {
+      "type": "string",
+      "enum": ["financial-orchestrator", "budget-analyst", "financing-advisor", "income-strategist",
+               "market-researcher", "market-analyst", "investment-researcher", "market-forecaster",
+               "forecast-supervisor", "risk-compliance-analyst", "head-financial-intelligence",
+               "chief-financial-authority"]
+    },
+    "task": {"type": "string", "minLength": 1},
+    "mode": {"type": "string", "enum": ["quick", "standard", "deep"]},
+    "objective": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "minLength": 1},
+    "created": {"type": "string", "description": "YYYY-MM-DD HH:MM with timezone"},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "label": {"type": "string", "enum": ["FACT", "REPORTED", "CALC", "ANALYSIS", "ASSUMPTION",
+                                                "FORECAST", "OPINION", "SPECULATION"]},
+          "text": {"type": "string"},
+          "source_ids": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "calculations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["command", "result"],
+        "properties": {
+          "command": {"type": "string"},
+          "result": {},
+          "independent_check": {"type": "string", "enum": ["passed", "failed", "n/a"]}
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "tier", "source"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "tier": {"type": "integer", "enum": [1, 2, 3]},
+          "source": {"type": "string"},
+          "url": {"type": "string"},
+          "published": {"type": "string"},
+          "data_as_of": {"type": "string"},
+          "retrieved": {"type": "string"},
+          "data_nature": {"type": "string", "enum": ["live", "delayed", "historical", "estimated"]},
+          "currency": {"type": "string"},
+          "exchange": {"type": "string"}
+        }
+      }
+    },
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "contradictory_evidence": {"type": "array", "items": {"type": "string"}},
+    "risks_limitations": {"type": "array", "items": {"type": "string"}},
+    "outstanding_questions": {"type": "array", "items": {"type": "string"}},
+    "recommended_next_action": {"type": "string"}
+  }
+}

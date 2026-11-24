@@ -1,0 +1,13 @@
+{
+  "_comment": "OPTIONAL. Copy to .mcp.json at the repo root ONLY if you want a market-data MCP server. Nothing here is required: the system works with built-in WebSearch/WebFetch. Never commit API keys; reference environment variables. Review any third-party MCP server's code, permissions and pricing before enabling it. If you add one, grant it ONLY to research agents by adding `mcpServers:` to their frontmatter, and never to an agent that could place orders or move money. Read-only data servers only.",
+  "mcpServers": {
+    "market-data": {
+      "type": "stdio",
+      "command": "<path-or-command-of-a-read-only-market-data-mcp-server>",
+      "args": [],
+      "env": {
+        "MARKET_DATA_API_KEY": "${MARKET_DATA_API_KEY}"
+      }
+    }
+  }
+}

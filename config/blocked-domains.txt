@@ -1,0 +1,10 @@
+# Domains finance agents (and the main session, within this project) may not fetch.
+# One domain per line; subdomains are blocked too. '#' starts a comment.
+#
+# Populate this from authoritative warning lists you trust, e.g. your securities
+# regulator's investor-alert / unauthorised-firm lists and your national anti-fraud
+# centre. This repository ships no third-party domain names, to avoid accusing
+# legitimate businesses by mistake.
+#
+# Reserved test domain used by tests/test_finance_gate.py (RFC 2606 .invalid TLD):
+blocked-example.invalid

@@ -1,0 +1,34 @@
+# --- Private / runtime data: never commit ---
+memory/private/*
+memory/error-log/*
+memory/forecast-journal/*
+memory/research-cache/*
+!memory/private/.gitkeep
+!memory/error-log/.gitkeep
+!memory/forecast-journal/outcomes/
+memory/forecast-journal/outcomes/*
+!memory/forecast-journal/outcomes/.gitkeep
+!memory/research-cache/.gitkeep
+reports/*
+!reports/.gitkeep
+.claude/state/*
+!.claude/state/.gitkeep
+.claude/settings.local.json
+.claude/agent-memory-local/
+tests/results/runtime-*.json
+
+# --- Credentials ---
+.env
+.env.*
+!.env.example
+.mcp.json
+secrets/
+
+# --- Tooling ---
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

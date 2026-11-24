@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(python3 tools/fincalc.py *)",
+      "Bash(python tools/fincalc.py *)",
+      "Bash(python3 .claude/hooks/finance_gate.py status)",
+      "Bash(python3 .claude/hooks/finance_gate.py deactivate)",
+      "Bash(python .claude/hooks/finance_gate.py status)",
+      "Bash(python .claude/hooks/finance_gate.py deactivate)",
+      "WebSearch",
+      "WebFetch"
+    ],
+    "ask": [
+      "Edit(./.claude/**)",
+      "Edit(./memory/private/**)",
+      "Bash(git push *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)"
+    ]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "P=python3; $P -c \"\" 2>/dev/null || P=python; \"$P\" \"${CLAUDE_PROJECT_DIR}/.claude/hooks/finance_gate.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "P=python3; $P -c \"\" 2>/dev/null || P=python; \"$P\" \"${CLAUDE_PROJECT_DIR}/.claude/hooks/finance_gate.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Agent|Task|Bash|Write|Edit|MultiEdit|NotebookEdit|WebFetch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "P=python3; $P -c \"\" 2>/dev/null || P=python; \"$P\" \"${CLAUDE_PROJECT_DIR}/.claude/hooks/finance_gate.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
