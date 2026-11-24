@@ -5,6 +5,7 @@ All notable changes are documented here. Format: [Keep a Changelog](https://keep
 ## [1.0.1] - 2026-11-23
 
 ### Fixed
+- `fincalc.py` crashed on **Python 3.14** (every command): 3.14's argparse rejects a bare `%` in help text. Escaped it and added regression test FC43; suite verified on Python 3.13 and 3.14.
 - If the hook script couldn't be found (e.g. the project was opened one folder too high), Python's exit code 2 made Claude Code block **every** prompt. The hook command now warns without blocking (exit 1) when the script is missing.
 - Windows: the hook command falls back from `python3` to `python`; both forms are allowed for the calculator and session commands.
 

@@ -226,6 +226,20 @@ class BudgetAndStats(unittest.TestCase):
 
 
 class InputHandling(unittest.TestCase):
+    def test_FC43_help_strings_valid_for_python314(self):
+        # Python 3.14 argparse rejects malformed %-format help strings when building the parser
+        # (regression: a bare "22%" in the payoff help crashed every command on 3.14).
+        p = fincalc.build_parser()
+        sub = next(a for a in p._actions if a.__class__.__name__ == "_SubParsersAction")
+        for choice in sub._choices_actions:
+            choice.help % {"prog": "fincalc.py"}
+        for name, sp in sub.choices.items():
+            for act in sp._actions:
+                if act.help:
+                    act.help % {"prog": name, "default": act.default}
+        p = subprocess.run([sys.executable, str(CALC), "--help"], capture_output=True, text=True)
+        self.assertEqual(p.returncode, 0, p.stderr)
+
     def test_FC40_bare_rate_interpreted_as_percent_and_flagged(self):
         _, o = run("loan", 200000, "6", 30)
         self.assertAlmostEqual(o["results"]["payment"], 1199.10, places=2)

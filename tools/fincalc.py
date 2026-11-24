@@ -556,7 +556,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("nominal"); s.add_argument("--n", type=int, default=12)
     s.set_defaults(func=c_effective)
 
-    s = sp.add_parser("payoff", help='debt payoff: \'{"debts":[{"name":"card","balance":5000,"rate":"22%","min_payment":150}],"monthly_budget":600,"strategy":"both"}\'')
+    s = sp.add_parser("payoff", help='debt payoff: \'{"debts":[{"name":"card","balance":5000,"rate":"22%%","min_payment":150}],"monthly_budget":600,"strategy":"both"}\'')
     s.add_argument("data"); s.set_defaults(func=c_payoff)
 
     s = sp.add_parser("npv", help="NPV; first cash flow is t=0")
