@@ -77,6 +77,7 @@ A report scaled to the request, using labels such as [FACT], [CALC], [ANALYSIS],
 ## Troubleshooting
 | Symptom | Fix |
 |---|---|
+| "Hook blocked your prompt" or "finance_gate.py not found" | You opened the wrong folder level. Open the folder that **directly** contains `.claude`, `README.md` and `tools` (GitHub ZIPs sometimes extract as `folder\folder\`) |
 | `/finance` not in the menu | Make sure you started `claude` in the repo root, and that `.claude/skills/finance/SKILL.md` exists |
 | Agents not found | Run `claude --agent nope -p x`; the error lists the available agents |
 | Spawn denied during a `/finance` run | The session expired (4h) or was stopped. Re-run `/finance …`. Adjust the TTL with `FIN_AGENTS_SESSION_TTL_MIN` |

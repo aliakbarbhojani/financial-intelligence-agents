@@ -30,7 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "P=python3; $P -c \"\" 2>/dev/null || P=python; \"$P\" \"${CLAUDE_PROJECT_DIR}/.claude/hooks/finance_gate.py\"",
+            "command": "F=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/finance_gate.py\"; [ -f \"$F\" ] || { echo \"finance-gate: $F not found. Open the folder that directly contains .claude. Finance guardrails are inactive.\" >&2; exit 1; }; P=python3; $P -c \"\" 2>/dev/null || P=python; \"$P\" \"$F\" || exit 1",
             "timeout": 10
           }
         ]
@@ -42,7 +42,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "P=python3; $P -c \"\" 2>/dev/null || P=python; \"$P\" \"${CLAUDE_PROJECT_DIR}/.claude/hooks/finance_gate.py\"",
+            "command": "F=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/finance_gate.py\"; [ -f \"$F\" ] || { echo \"finance-gate: $F not found. Open the folder that directly contains .claude. Finance guardrails are inactive.\" >&2; exit 1; }; P=python3; $P -c \"\" 2>/dev/null || P=python; \"$P\" \"$F\" || exit 1",
             "timeout": 10
           }
         ]
@@ -54,7 +54,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "P=python3; $P -c \"\" 2>/dev/null || P=python; \"$P\" \"${CLAUDE_PROJECT_DIR}/.claude/hooks/finance_gate.py\"",
+            "command": "F=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/finance_gate.py\"; [ -f \"$F\" ] || { echo \"finance-gate: $F not found. Open the folder that directly contains .claude. Finance guardrails are inactive.\" >&2; exit 1; }; P=python3; $P -c \"\" 2>/dev/null || P=python; \"$P\" \"$F\" || exit 1",
             "timeout": 10
           }
         ]

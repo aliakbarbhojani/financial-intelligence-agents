@@ -2,6 +2,12 @@
 
 All notable changes are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [SemVer](https://semver.org/).
 
+## [1.0.1] - 2026-11-23
+
+### Fixed
+- If the hook script couldn't be found (e.g. the project was opened one folder too high), Python's exit code 2 made Claude Code block **every** prompt. The hook command now warns without blocking (exit 1) when the script is missing.
+- Windows: the hook command falls back from `python3` to `python`; both forms are allowed for the calculator and session commands.
+
 ## [1.0.0] - 2026-11-23
 
 ### Added
